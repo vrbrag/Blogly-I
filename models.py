@@ -23,6 +23,16 @@ class User(db.Model):
       return f"{self.first_name} {self.last_name}"
 
 
+class Post(db.Model):
+   """Posts"""
+
+   __tablename__="posts"
+
+   id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+   title = db.Column(db.Text, nullable=False)
+   content = db.Column(db.Text, nullable=False)
+   created_at = db.Column(db.Text, nullable=False)
+
 def connect_db(app):
    db.app = app
    db.init_app(app)
