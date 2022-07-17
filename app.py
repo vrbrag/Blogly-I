@@ -13,6 +13,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SECRET_KEY'] = 'secret'
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 toolbar = DebugToolbarExtension(app)
 
@@ -23,7 +24,7 @@ db.create_all()
 def root():
    """Posts feed"""
 
-   posts = Post.query.all()
+   posts = Post.query.order_by(Post.created_at.desc()).limit(8).all()
    return render_template('homepage.html', posts=posts)
 
 ###########################################
