@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Blogly</title>
+</head>
+
+<body>
+   <h1>Blogly Posts</h1>
+
+   {% for post in posts %}
+   <h2 class="mt-4">
+      <a href="/posts/{{ post.id }}">{{ post.title }}</a>
+   </h2>
+   <p>
+      {{ post.content }}
+   </p>
+   <p>
+      <small>by {{ post.user.full_name }} on {{ post.created_at }}</small>
+   </p>
+   {% endfor %}
+</body>
+
+</html>

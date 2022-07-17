@@ -18,7 +18,7 @@ class User(db.Model):
    last_name = db.Column(db.Text, nullable=False)
    image_url = db.Column(db.Text, nullable=False, default=DEFAULT_IMAGE_URL)
 
-
+   posts = db.relationship("Post", backref="user", cascade="all, delete-orphan")
    @property
    def full_name(self):
       return f"{self.first_name} {self.last_name}"
@@ -32,7 +32,7 @@ class Post(db.Model):
    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
    title = db.Column(db.Text, nullable=False)
    content = db.Column(db.Text, nullable=False)
-   created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now)
+   created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
 def connect_db(app):
